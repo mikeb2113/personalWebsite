@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Michael Bermudez</title>
+</head>
+<body>
+    <h1>Michael Bermudez</h1>
+    <p>Coding outside the box since 2021</p>
+    <div class="button-container" style="position: relative;">
+    <button id="projects-button" class="note" data-target="dropdown">Projects</button>
+    <button id="about-me-button" class="note" data-target="aboutme">About Me</button>
+    <a href="mailto:mikebermudez2113@gmail.com">
+        <button type="button" class="note">Send Email</button>
+      </a>
+
+      <div id="aboutme" class="dropdown-content">
+        <div class="index-card">
+            <div class="name">
+            <h1>Michael Bermudez</h1>
+            </div>
+            <div class="text-group">
+                <p>My name is Michael Bermudez. My coding journey began in my senior year of high school with an AP computer science course. While the class opened my eyes to the possibilities in technology, my real growth started as I ventured beyond the classroom. From building my first basic website the following summer, I've progressed to developing database-driven projects. This hands-on experience has been instrumental in refining my skills and fueling my passion for technology.</p>
+
+                <p>When I'm not coding, I'm an avid gamer and a dedicated reader. These hobbies not only bring joy to my life but also enhance my professional skills, like the strategic thinking honed through gaming. I love diving into complex coding challenges, and I'm always eager to explore new technologies and collaborate on innovative projects.</p>
+                
+                <p>Feel free to browse my portfolio to see my work or get in touch if you're interested in discussing potential opportunities.</p>
+                
+            </div>
+        </div>
+    </div>
+        <div id="dropdown" class="dropdown-content">
+        <img src="styles/pokemon.png" alt="Pokemon" />
+        <div class="project-description index-card">
+            <h2 class="card-title">Pokemon Infinite Fusions Generator</h2>
+            <div class="text-group">
+            <p>Balancing work and play is crucial, and with the Pokémon Infinite Fusions Team Builder, I've embraced this philosophy. This innovative application not only allows players to indulge in the creation of unique Pokémon fusions but also showcases my technical skills in full-stack development.</p>
+
+            <p>The core of the project is a robust database system that manages user accounts, including secure login and registration processes. This ensures a personalized experience for each user, allowing them to build and save custom teams of fused Pokémon, with data persisting across sessions for seamless access anytime.</p>
+        
+            <p>What truly sets this application apart is the staggering potential for over 175,000 unique Pokémon combinations, made possible through web scraping with Flask. This empowers users to craft entirely unique Pokémon fusions, enhancing their engagement and creativity. The flexibility extends to visual customization, with several different sprites available for many Pokémon fusions, ensuring that every user's experience is distinct and filled with endless possibilities.</p>
+        
+            <p>As a testament to my skills in database management, backend development with Flask, and frontend user experience design, the Pokémon Infinite Fusions Team Builder represents the perfect blend of my technical prowess and creative vision, pushing the boundaries of what's possible in interactive web applications.</p>
+            </div>
+        </div>
+              <!-- Button to Play Music -->
+<button id="playMusicButton" class="note">Play Music</button>
+<div class = 'index-card'>
+    <div class="card-title">Animal Crossing Time of Day Music Player</div>
+    <div class="text-group-music1">
+    <p>Growing up, video games had always been a passion of mine. Some of my fondest memories were from a game called animal crossing, where the game would play a different sound track depending on the time of the day. If you'd play the game in the afternoon, you'd get an upbeat sound track. If you played into the late hours of the night, you'd get a more mellow sound. In one of my earlier projects I created a similar effect, except I also implemented random chances of ambiant rain or bug sounds for even better immersion. Press the button above to get the experiences!</p>
+</div>
+
+</div>
+<!-- Linking the JavaScript File -->
+<script src="background.js"></script>
+<script>
+    document.getElementById('playMusicButton').addEventListener('click', function() {
+        if (isMusicPlaying) {
+            stopMusicAndEvents(); // This will stop the music if it's playing
+        } else {
+            playMusicAndEvents(); // This will play the music if it's not already playing
+        }
+    });
+</script>
+    </div>
+    </div>
+    <div class="contact-container">
+        <div class="hbox">
+            <div class="phone">Phone: 631-875-4631</div>
+            <div class="email">Email: mikebermudez2113@gmail.com</div>
+            <div class="languages">Expertise: Java, Python, JavaScript, HTML, C, <span class="css-language">CSS</span></div>        </div>
+    </div>
+    <!-- JavaScript link (will add later) -->
+    <script src="script.js"></script>
+
+</body>
+</html>

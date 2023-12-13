@@ -1,0 +1,335 @@
+
+
+body {
+    background-image: url('styles/paperBackground.jpg');
+    background-size: cover;
+    font-family: Arial, sans-serif; /* Example font */
+    text-align: center; /* Center aligns all content */
+    padding: 20px; /* Adds some padding around the content */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.index-card {
+    background-color: white; /* Typical index card color */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 20px; /* Space inside the card */
+    margin: 20px 0; /* Space outside the card */
+    border-radius: 5px; /* Optionally round the corners */
+    position: relative; /* Needed for positioning pseudo-elements */
+    background-image: linear-gradient(to bottom, transparent 58px, red 58px, red 60px, transparent 60px), 
+                      repeating-linear-gradient(to bottom, transparent, transparent 28px, blue 28px, blue 29px);    /* Other styling as needed */
+}
+
+.index-card .text-group p {
+    font-size: 42px; /* Adjusted to a more reasonable size */
+    line-height: 29px; /* Line height to match the blue line intervals */
+    color: #333; /* Color of the text */
+    margin-bottom: 40px;
+    font-family: 'ichiro', Arial, sans-serif; /* Font family of the text */
+    /* Other styles as needed */
+}
+
+.index-card .text-group-music1 p {
+    font-size: 42px; /* Adjusted to a more reasonable size */
+    line-height: 29px; /* Line height to match the blue line intervals */
+    color: #333; /* Color of the text */
+    margin-bottom: 40px;
+    font-family: 'ichiro', Arial, sans-serif; /* Font family of the text */
+    margin-top: -17px;
+    /* Other styles as needed */
+}
+
+/*.index-card .text-group-music2 p {
+    font-size: 42px; 
+    line-height: 29px; 
+    color: #333; 
+    margin-bottom: 40px;
+    font-family: 'ichiro', Arial, sans-serif; 
+    padding-top: 6px;
+}*/
+
+#aboutme .index-card .name h1 {
+    text-align: left;
+    margin-top: 10px;
+    position: relative;
+    z-index: 3;
+}
+
+#aboutme .index-card .text-group p:first-child {
+    margin-top: 73px; /* Increased margin for the first paragraph */
+}
+
+#aboutme .index-card .text-group p {
+    text-align: left;
+    margin-top: -13px;
+    position: relative;
+    z-index: 3;
+}
+.index-card::after {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute; /* Position absolutely within the index-card */
+    top: 60px; /* Positioning it just below the red line */
+    left: 0;
+    right: 0;
+    height: 2px; /* Thickness of the red line */
+    background-color: red; /* Color of the red line */
+    z-index: 1;
+}
+
+.index-card::before {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute; /* Position absolutely within the index-card */
+    left: 0;
+    right: 0;
+    height: 40px; /* Height enough to cover the first two blue lines */
+    background-color: white; /* Color of the box */
+    z-index: 2; /* Ensuring it's above the background but below the text content */
+}
+
+.card-title {
+    position: relative;
+    text-align: center; /* Center the text */
+    margin-top: 1px; /* Adjust as needed to position it within the white space */
+    margin-bottom: 20px; /* Provide some space before the first paragraph */
+    font-size: 70px; /* Adjust as needed */
+    font-weight: bold; /* Optional: if you want the title to be bold */
+    font-family: 'nib', Arial, sans-serif; /* Add this line */
+    z-index: 3;
+    /* Any additional styling like font-family, color, etc. */
+}
+.dropdown-content {
+    display: none; /* Initially hidden */
+    position: static; /* Changed to static, so it's part of the normal document flow */
+    /* Removed top, left, and transform properties as they're not needed with static positioning */
+    background: none; /* Your desired background color */
+    min-width: 160px; /* Minimum width */
+    /* Removed max-height and overflow properties to allow natural page extension */
+    z-index: 1000; /* High z-index to ensure it's on top of other elements */
+    /* Add other styles as needed */
+}
+
+.dropdown-content img {
+    width: 950px; /* Make the image responsive */
+    height: auto; /* Maintain the aspect ratio */
+    display: block; /* Centers the image in the container */
+    margin: 0 auto 20px; /* Center align and add margin below the image */
+}
+
+.project-description {
+    padding-top: 20px; /* Reduce this value to move text up */
+    padding-right: 20px; /* Maintain existing padding, adjust as necessary */
+    padding-bottom: 20px; /* Maintain existing padding, adjust as necessary */
+    padding-left: 20px; /* Maintain existing padding, adjust as necessary */
+    /* Other styles as needed */
+}
+
+.project-description .text-group p {
+    font-size: 42px; /* Adjusted to a more reasonable size */
+    line-height: 29px; /* Line height to match the blue line intervals */
+    color: #333; /* Color of the text */
+    margin-bottom: -20px;
+    font-family: 'ichiro', Arial, sans-serif; /* Font family of the text */
+    /* Other styles as needed */
+}
+
+.project-description .text-group p:nth-of-type(4) {
+    padding-bottom: 20px; /* Adjust the value as needed */
+}
+
+.text-group {
+    margin-top: -50px; /* Adjust the value as needed */
+}
+/* You can also add responsive design */
+@media (max-width: 768px) {
+    .project-description {
+        padding: 10px; /* Adjust padding on smaller screens */
+    }
+}
+
+/* Show the dropdown content when it has the 'show' class */
+.dropdown-content.show {
+    display: block;
+}
+
+
+
+.note {
+    background-color: yellow;
+    border: 2px solid black;
+    position: relative;
+    padding: 10px 20px;
+    font-family: 'FrederickatheGreat', Arial, sans-serif; /* Add this line */
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+    clip-path: polygon(75% 0, 100% 38%, 100% 100%, 0 100%, 0 0);
+}
+
+.note::after {
+    content: '';
+    position: absolute;
+    background-color: #d4af37; /* Darker yellow */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    /* Adjust the border width, making the right border larger */
+    border-width: 0 0 30px 20px; /* Left border is now 0 */
+    border-color: transparent transparent #d4af37 transparent;
+    /* Align the top of the triangle with the top of the container */
+    top: -10px;
+    right: 5px;
+    /* Adjust the transform and transform-origin */
+    transform: rotate(-15deg); /* Negative rotation to move it right */
+    transform-origin: 0 0; /* Rotate around the top left corner */
+}
+
+/*.DogEar {
+    top: 0; 
+    right: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 0 0 20px; 
+    border-color: transparent transparent transparent #d4af37;
+}*/
+
+.contact-container {
+    font-family: 'ichiro', sans-serif; /* Fallback to sans-serif if the custom font fails to load */
+    font-size: 50px;
+    margin: 5px auto; /* Centers the container with a small top margin */
+    padding: 10px; /* Smaller padding to reduce space around the content */
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2); /* Adjusted box-shadow for a tighter effect */
+    border-radius: 10px; /* Slight rounding of corners */
+    width: fit-content; /* Adjust width to fit the content */
+    display: flex; /* Enables flexbox properties */
+    justify-content: center; /* Centers flex items horizontally */
+    background-color: transparent; /* Change this if you want a different background color */
+    position: relative;
+    top: 100px;
+}
+
+.project-container img{
+    width: 15%;
+    height: auto;
+    padding-left: -100px;
+    display: none;
+}
+
+.css-language {
+    font-family: 'filament', sans-serif; /* Fallback to sans-serif if the custom font fails to load */
+    font-size: 50px;
+    position: absolute; /* Use relative positioning */
+    right: -70px; /* Adjust this value to move 'CSS' out of the box */
+    top: 15px;
+    display: inline-block; /* Make 'CSS' an inline-block element if it's not already */
+    z-index: 2; /* Ensure it's above any other content or shadow */
+    /* Keep the rest of your styles */
+}
+
+.hbox {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Reduced gap between items */
+}
+
+h1 {
+    font-family: 'FrederickatheGreat', sans-serif; /* Fallback to sans-serif if the custom font fails to load */
+    margin-top: 10px;
+}
+
+p {
+    font-family: 'nib', sans-serif; /* Fallback to sans-serif if the custom font fails to load */
+    font-size: 50px;
+    margin-top: 50px;
+}
+
+.About-Me {
+    font-family: 'nib', sans-serif; /* Fallback to sans-serif if the custom font fails to load */
+    font-size: 30px;
+    background-color: transparent;
+    left: -10px;
+}
+
+.Contact-Me {
+    font-family: 'nib', sans-serif; /* Fallback to sans-serif if the custom font fails to load */
+    font-size: 30px;
+    background-color: transparent;
+    left: 10px;
+}
+
+.About-Contact {
+    position: relative;
+    top: 150px;
+}
+
+
+
+
+@font-face {
+    font-family: 'FrederickatheGreat';
+    src: url('styles/font/FrederickatheGreat-Regular.ttf') format('truetype'),
+         url('styles/font/frederickathegreat-regular-webfont.woff') format('woff'),
+         url('styles/font/rederickathegreat-regular-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ichiro';
+    src: url('styles/font/1_ichiro-webfont.woff2') format('woff2'),
+         url('styles/font/1_ichiro-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'barely';
+    src: url('styles/font/barely_handwritten-webfont.woff2') format('woff2'),
+         url('styles/font/barely_handwritten-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'drm';
+    src: url('styles/font/drmhandwrittenthin-regular-webfont.woff2') format('woff2'),
+         url('styles/font/drmhandwrittenthin-regular-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'filament';
+    src: url('styles/font/filament-webfont.woff2') format('woff2'),
+         url('styles/font/filament-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'lovesong';
+    src: url('styles/font/jo_wrote_a_lovesong-webfont.woff2') format('woff2'),
+         url('styles/font/jo_wrote_a_lovesong-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pandemi';
+    src: url('styles/font/pandemidemo-6ygqx-webfont.woff2') format('woff2'),
+         url('styles/font/pandemidemo-6ygqx-webfont.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'nib';
+    src: url('styles/font/standard_nib_handwritten-webfont.woff2') format('woff2'),
+         url('styles/font/standard_nib_handwritten-webfont.woff') format('woff');
+    line-height: 1.2px;
+    font-weight: 900;
+    font-style: normal;
+}
