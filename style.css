@@ -167,6 +167,7 @@ body {
     clip-path: polygon(75% 0, 100% 38%, 100% 100%, 0 100%, 0 0);
 }
 
+
 .note::after {
     content: '';
     position: absolute;
