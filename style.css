@@ -49,13 +49,23 @@ body {
     padding-top: 6px;
 }*/
 
-#aboutme .index-card p {
+#aboutme .index-card .name h1 {
     text-align: left;
     margin-top: 10px;
     position: relative;
     z-index: 3;
 }
 
+#aboutme .index-card .text-group p:first-child {
+    margin-top: 73px; /* Increased margin for the first paragraph */
+}
+
+#aboutme .index-card .text-group p {
+    text-align: left;
+    margin-top: -13px;
+    position: relative;
+    z-index: 3;
+}
 .index-card::after {
     content: ''; /* Required for pseudo-elements */
     position: absolute; /* Position absolutely within the index-card */
