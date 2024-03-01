@@ -13,8 +13,13 @@
     <button id="projects-button" class="note" data-target="dropdown">Projects</button>
     <button id="about-me-button" class="note" data-target="aboutme">About Me</button>
     <a href="mailto:mikebermudez2113@gmail.com">
-        <button type="button" class="note">Send Email</button>
+        <button type="button" class="note">Email Me</button>
       </a>
+      <!-- GitHub Link Button -->
+<a href="https://github.com/mikeb2113" class="note">
+    Github
+</a>
+
 
       <div id="aboutme" class="dropdown-content">
         <div class="index-card">
@@ -32,6 +37,17 @@
         </div>
     </div>
         <div id="dropdown" class="dropdown-content">
+            <img src="styles/collegeProject.png" alt="College" />
+            <div class="project-description index-card">
+                <h2 class="card-title">College Course Manager</h2>
+                <div class="text-group">
+                    <p>This was one of the final projects I did in community college. It required students to parse data given to us by our instructor from excel and csv files to create an application that can display a list of instructors that the use can interact with. You could assign teachers courses, unassign courses and all of this would be guided by an intuitive GUI designed to let the user know what the best courses to assign are. These choices would be guided by what course the instructor already had experience teaching. Any change would be saved in a serialized file for data persistance.</p>
+
+                    <p>I learned a lot in this project, but what I'm most proud of was that I created my own data sets in python in order to stress test my application and saw that it worked with very little lag with up to 10,000 sample instructors. What made this application so fast was that I used a hashset to couple courses together by section, and I also used a hashset to store the instructors to quickly search them by ID.</p>
+
+                    <p>However, the most important lesson is one in responsible handling of code and version management. In my haste to finish the project I forgot to upload the final version to github. I had also pulled an all nighter, not out of necessity but because there were additional features that I wanted to add so that it would be entirely intuitive to use and feel better for the user. However, tired as I was, without noticing I had accidentally saved over my updated code with an old version and wound up losing my progress... If nothing else it was a lesson learned, and a mistake I don't see myself making any time soon.</p>
+                </div>
+            </div>
         <img src="styles/pokemon.png" alt="Pokemon" />
         <div class="project-description index-card">
             <h2 class="card-title">Pokemon Infinite Fusions Generator</h2>
@@ -45,6 +61,15 @@
             <p>As a testament to my skills in database management, backend development with Flask, and frontend user experience design, the Pokémon Infinite Fusions Team Builder represents the perfect blend of my technical prowess and creative vision, pushing the boundaries of what's possible in interactive web applications.</p>
             </div>
         </div>
+        <img src="styles/notification_app.png" alt="Notification" style="height: 15%; width: 15%;"/>
+        <div class="project-description index-card">
+            <h2 class="card-title">Notimi - Notify Me!</h2>
+            <div class="text-group">
+                <p>When you have several dealines to meet all at once, it can be challenging to keep up with everything. Not due to a lack of ability, but due to a lack of organization. This app aims to address this by serving as a one stop shop for all of your notification needs.</p>
+                <p>Where this app shines is it's use of design patterns for flexibility and easily scaleable code. It makes use of the strategy design pattern to allow users to schedule notifciations with differing behaviors, aswell as the template pattern so users may quickly create different notifications which will share similar text or notification behaviors. This application also employs the decorator pattern, so that if a notification is for a task the user must complete, they may choose to make the notification trigger at closer intervals at the allotted time to ensure that you stay on task. This app is designed to work even in the most niche cases. You may also set notifications for distant dates and intervals. For example, if you want to be notified a week before an end of year meeting every year, you may log into the app once and set this up to take care of this indefinitely.</p>
+                <p>Designed in flutter using Dart and Kotlin, this app is my first foray into android development. It presented several challenges such as bypassing the strict battery saving rstrictions enforced by new android devices. I managed to bypass these restrictions by using local notifications so that they will still be pushed in low power mode. Entirely self-taught in Dart, Kotlin and Flutter development, there is no better testimate to my flexability and willingness to delve into new techologies and skills.</p>
+            </div>
+        </div>
               <!-- Button to Play Music -->
 <button id="playMusicButton" class="note">Play Music</button>
 <div class = 'index-card'>
@@ -52,9 +77,6 @@
     <div class="text-group-music1">
     <p>Growing up, video games had always been a passion of mine. Some of my fondest memories were from a game called animal crossing, where the game would play a different sound track depending on the time of the day. If you'd play the game in the afternoon, you'd get an upbeat sound track. If you played into the late hours of the night, you'd get a more mellow sound. In one of my earlier projects I created a similar effect, except I also implemented random chances of ambiant rain or bug sounds for even better immersion. Press the button above to get the experiences!</p>
 </div>
-
-</div>
-<!-- Linking the JavaScript File -->
 <script src="background.js"></script>
 <script>
     document.getElementById('playMusicButton').addEventListener('click', function() {
@@ -65,6 +87,9 @@
         }
     });
 </script>
+</div>
+<!-- Linking the JavaScript File -->
+
     </div>
     </div>
     <div class="contact-container">
