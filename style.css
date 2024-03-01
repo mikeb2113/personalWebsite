@@ -20,7 +20,10 @@ body {
     background-image: linear-gradient(to bottom, transparent 58px, red 58px, red 60px, transparent 60px), 
                       repeating-linear-gradient(to bottom, transparent, transparent 28px, blue 28px, blue 29px);    /* Other styling as needed */
 }
-
+.notification-image{
+    width: .01%;
+    height: auto;
+}
 .index-card .text-group p {
     font-size: 42px; /* Adjusted to a more reasonable size */
     line-height: 29px; /* Line height to match the blue line intervals */
