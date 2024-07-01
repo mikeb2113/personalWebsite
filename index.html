@@ -6,6 +6,14 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Michael Bermudez</title>
 </head>
+<div class="contact-container">
+    <div class="hbox">
+        <div class="phone">Phone: 631-875-4631</div>
+        <div class="email">Email: mikebermudez2113@gmail.com</div>
+        <div class="languages">Specialization: Java, Python, JavaScript, HTML, C, <span class="css-language">CSS</span>
+        </div>        
+    </div>
+</div>
 <body>
     <h1>Michael Bermudez</h1>
     <p>Coding outside the box since 2021</p>
@@ -19,6 +27,38 @@
 <a href="https://github.com/mikeb2113" class="note">
     Github
 </a>
+</div>
+<style>
+    body {
+        font-size: 16px; /* Set a base font size for the body */
+        line-height: 1.5; /* Set a relative line height */
+        color: #333; /* Color of the text */
+        margin-bottom: 40px;
+        font-family: 'ichiro', Arial, sans-serif; /* Font family of the text */
+    }
+    .bold-pseudo-container {
+        position: relative;
+        display: inline-block;
+    }
+    .bold-pseudo::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 1px; /* Adjust these values to achieve the desired bold effect */
+        top: 1px;
+        z-index: -1;
+        color: #000;
+    }
+    .note {
+        font-size: inherit; /* Ensure the font size of the .note class inherits from the body */
+    }
+    .large-text {
+        font-size: 42px; /* Specific larger font size for designated elements */
+        line-height: 29px; /* Specific line height for designated elements */
+    }
+    .bold-offset {
+        padding-top: .9%;
+    }
+</style>
 
 
       <div id="aboutme" class="dropdown-content">
@@ -37,45 +77,12 @@
         </div>
     </div>
         <div id="dropdown" class="dropdown-content">
-            <img src="styles/collegeProject.png" alt="College" />
-            <div class="project-description index-card">
-                <h2 class="card-title">College Course Manager</h2>
-                <div class="text-group">
-                    <p>This was one of the final projects I did in community college. It required students to parse data given to us by our instructor from excel and csv files to create an application that can display a list of instructors that the use can interact with. You could assign teachers courses, unassign courses and all of this would be guided by an intuitive GUI designed to let the user know what the best courses to assign are. These choices would be guided by what course the instructor already had experience teaching. Any change would be saved in a serialized file for data persistance.</p>
-
-                    <p>I learned a lot in this project, but what I'm most proud of was that I created my own data sets in python in order to stress test my application and saw that it worked with very little lag with up to 10,000 sample instructors. What made this application so fast was that I used a hashset to couple courses together by section, and I also used a hashset to store the instructors to quickly search them by ID.</p>
-
-                    <p>However, the most important lesson is one in responsible handling of code and version management. In my haste to finish the project I forgot to upload the final version to github. I had also pulled an all nighter, not out of necessity but because there were additional features that I wanted to add so that it would be entirely intuitive to use and feel better for the user. However, tired as I was, without noticing I had accidentally saved over my updated code with an old version and wound up losing my progress... If nothing else it was a lesson learned, and a mistake I don't see myself making any time soon.</p>
-                </div>
-            </div>
-        <img src="styles/pokemon.png" alt="Pokemon" />
-        <div class="project-description index-card">
-            <h2 class="card-title">Pokemon Infinite Fusions Generator</h2>
-            <div class="text-group">
-            <p>Balancing work and play is crucial, and with the Pokémon Infinite Fusions Team Builder, I've embraced this philosophy. This innovative application not only allows players to indulge in the creation of unique Pokémon fusions but also showcases my technical skills in full-stack development.</p>
-
-            <p>The core of the project is a robust database system that manages user accounts, including secure login and registration processes. This ensures a personalized experience for each user, allowing them to build and save custom teams of fused Pokémon, with data persisting across sessions for seamless access anytime.</p>
-        
-            <p>What truly sets this application apart is the staggering potential for over 175,000 unique Pokémon combinations, made possible through web scraping with Flask. This empowers users to craft entirely unique Pokémon fusions, enhancing their engagement and creativity. The flexibility extends to visual customization, with several different sprites available for many Pokémon fusions, ensuring that every user's experience is distinct and filled with endless possibilities.</p>
-        
-            <p>As a testament to my skills in database management, backend development with Flask, and frontend user experience design, the Pokémon Infinite Fusions Team Builder represents the perfect blend of my technical prowess and creative vision, pushing the boundaries of what's possible in interactive web applications.</p>
-            </div>
-        </div>
-        <img src="styles/notification_app.png" alt="Notification" style="height: 15%; width: 15%;"/>
-        <div class="project-description index-card">
-            <h2 class="card-title">Notification App</h2>
-            <div class="text-group">
-                <p>When you have several dealines to meet all at once, it can be challenging to keep up with everything. Not due to a lack of ability, but due to a lack of organization. This app aims to address this by serving as a one stop shop for all of your notification needs.</p>
-                <p>Where this app shines is it's use of design patterns for flexibility and easily scaleable code. It makes use of the strategy design pattern to allow users to schedule notifciations with differing behaviors, aswell as the template pattern so users may quickly create different notifications which will share similar text or notification behaviors. This application also employs the decorator pattern, so that if a notification is for a task the user must complete, they may choose to make the notification trigger at closer intervals at the allotted time to ensure that you stay on task. This app is designed to work even in the most niche cases. You may also set notifications for distant dates and intervals. For example, if you want to be notified a week before an end of year meeting every year, you may log into the app once and set this up to take care of this indefinitely.</p>
-                <p>Designed in flutter using Dart and Kotlin, this app is my first foray into android development. It presented several challenges such as bypassing the strict battery saving rstrictions enforced by new android devices. I managed to bypass these restrictions by using local notifications so that they will still be pushed in low power mode. Entirely self-taught in Dart, Kotlin and Flutter development, there is no better testimate to my flexability and willingness to delve into new techologies and skills.</p>
-            </div>
-        </div>
-              <!-- Button to Play Music -->
-<button id="playMusicButton" class="note">Play Music</button>
+                          <!-- Button to Play Music -->
+<button id="playMusicButton" class="note music-note">Play Music</button>
 <div class = 'index-card'>
     <div class="card-title">Animal Crossing Time of Day Music Player</div>
     <div class="text-group-music1">
-    <p>Growing up, video games had always been a passion of mine. Some of my fondest memories were from a game called animal crossing, where the game would play a different sound track depending on the time of the day. If you'd play the game in the afternoon, you'd get an upbeat sound track. If you played into the late hours of the night, you'd get a more mellow sound. In one of my earlier projects I created a similar effect, except I also implemented random chances of ambiant rain or bug sounds for even better immersion. Press the button above to get the experiences!</p>
+    <p>Hello Reader! Before we get started, how about some music? The player above will share some nostalgic music from one of my favorite childhood video games. The music will change based on the time of day it is played at, and over time nature sounds play over the music to further immerse you in the music.</p>
 </div>
 <script src="background.js"></script>
 <script>
@@ -88,16 +95,63 @@
     });
 </script>
 </div>
+            <img src="styles/collegeProject.png" alt="College" />
+            <div class="project-description index-card">
+                <h2 class="card-title">College Course Manager</h2>
+                <div class="text-group">
+                    <p>This was one of the earlier projects that I completed during my time in college. It required students to parse data given to us by our instructor from excel and csv files to create an application that can display a list of instructors that the use can interact with. You could assign teachers courses, unassign courses and all of this would be guided by an intuitive GUI designed to let the user know what the best courses to assign are. These choices would be guided by what course the instructor already had experience teaching. Any change would be saved in a serialized file for data persistance.</p>
+
+                    <p>I learned a lot in this project, but what I'm most proud of was that I created my own data sets in Python in order to stress test my application and saw that
+                    <span class="bold-pseudo-container large-text">
+                        <b class="bold-pseudo" data-text="it worked with very little lag with up to 10,000 sample instructors.">it worked with very little lag with up to 10,000 sample instructors.</b>
+                    </span> 
+                    What made this application so fast was that I used a hashset to couple courses together by section, and I also used a hashset to store the instructors to quickly search them by ID.</p>
+
+                    <p>However, <span class="bold-pseudo-container large-text">
+                        <b class="bold-pseudo" data-text="the most important lesson I learned is one in responsible handling of code and version management.">the most important lesson I learned is one in responsible handling of code and version management.</b></span> In my haste to finish the project I forgot to upload the final version to GitHub. I had also pulled an all-nighter, not out of necessity but because there were additional features that I wanted to add so that it would be entirely intuitive to use and feel better for the user. However, tired as I was, without noticing I had accidentally saved over my updated code with an old version and wound up losing my progress... If nothing else it was a lesson learned, and a mistake I don't see myself making any time soon.</p>
+                </div>
+            </div>
+        <img src="styles/pokemon.png" alt="Pokemon" />
+        <div class="project-description index-card">
+            <h2 class="card-title">Pokemon Infinite Fusions Generator</h2>
+            <div class="text-group">
+            <p>
+                <span class="bold-pseudo-container">
+                    <b class="bold-pseudo" data-text="Balancing work and play is crucial, and with the Pokémon Infinite Fusions Team Builder, I've embraced this philosophy. This innovative application not only allows players to indulge in the creation of unique Pokémon fusions but also showcases my technical skills in full-stack development.">Balancing work and play is crucial, and with the Pokémon Infinite Fusions Team Builder, I've embraced this philosophy. This innovative application not only allows players to indulge in the creation of unique Pokémon fusions but also showcases my technical skills in full-stack development.</b></span></p>
+
+            <p>The core of the project is a robust database system that manages user accounts, including secure login and registration processes. This ensures a personalized experience for each user, allowing them to build and save custom teams of fused Pokémon, with data persisting across sessions for seamless access anytime.</p>
+        
+            <p>
+                <span class="bold-pseudo-container large-text">
+                    <b class="bold-pseudo" data-text="What truly sets this application apart is the staggering potential for over 175,000 unique Pokémon combinations, made possible through web scraping with Flask.">What truly sets this application apart is the staggering potential for over 175,000 unique Pokémon combinations, made possible through web scraping with Flask.</b></span>
+                 This empowers users to craft entirely unique Pokémon fusions, enhancing their engagement and creativity. The flexibility extends to visual customization, with several different sprites available for many Pokémon fusions, ensuring that every user's experience is distinct and filled with endless possibilities.
+            </p>
+        
+            <p>As a testament to my skills in database management, backend development with Flask, and frontend user experience design, the Pokémon Infinite Fusions Team Builder represents the perfect blend of my technical prowess and creative vision, pushing the boundaries of what's possible in interactive web applications.</p>
+            </div>
+        </div>
+        <img src="styles/notification_app.png" alt="Notification" style="height: 15%; width: 15%;"/>
+        <div class="project-description index-card">
+            <h2 class="card-title">Notimi - Notify Me!</h2>
+            <div class="text-group">
+                <p>
+                    <span class="bold-pseudo-container large-text">
+                        <b class="bold-pseudo" data-text="What truly sets this application apart is the staggering potential for over 175,000 unique Pokémon combinations, made possible through web scraping with Flask.">What truly sets this application apart is the staggering potential for over 175,000 unique Pokémon combinations, made possible through web scraping with Flask.</b></span>
+                </p>
+                <p>Where this app shines is it's use of design patterns for flexibility and easily scaleable code. It makes use of the strategy design pattern to allow users to schedule notifciations with differing behaviors, aswell as the template pattern so users may quickly create different notifications which will share similar text or notification behaviors. This application also employs the decorator pattern, so that if a notification is for a task the user must complete, they may choose to make the notification trigger at closer intervals at the allotted time to ensure that you stay on task. This app is designed to work even in the most niche cases. You may also set notifications for distant dates and intervals. For example, if you want to be notified a week before an end of year meeting every year, you may log into the app once and set this up to take care of this indefinitely.</p>
+                <p>
+                    <span class="bold-pseudo-container large-text">
+                        <b class="bold-pseudo" data-text="Designed in flutter using Dart and Kotlin, this app is my first foray into android development. It presented several challenges such as bypassing the strict battery saving rstrictions enforced by new android devices. I managed to bypass these restrictions by using local notifications so that they will still be pushed in low power mode.">
+                        Designed in flutter using Dart and Kotlin, this app is my first foray into android development. It presented several challenges such as bypassing the strict battery saving rstrictions enforced by new android devices. I managed to bypass these restrictions by using local notifications so that they will still be pushed in low power mode.</b>
+                    </span>
+                </p>
+            </div>
+        </div>
+
 <!-- Linking the JavaScript File -->
 
     </div>
-    </div>
-    <div class="contact-container">
-        <div class="hbox">
-            <div class="phone">Phone: 631-875-4631</div>
-            <div class="email">Email: mikebermudez2113@gmail.com</div>
-            <div class="languages">Expertise: Java, Python, JavaScript, HTML, C, <span class="css-language">CSS</span></div>        </div>
-    </div>
+
     <!-- JavaScript link (will add later) -->
     <script src="script.js"></script>
 

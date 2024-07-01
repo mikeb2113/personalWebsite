@@ -37,7 +37,7 @@ body {
     font-size: 42px; /* Adjusted to a more reasonable size */
     line-height: 29px; /* Line height to match the blue line intervals */
     color: #333; /* Color of the text */
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     font-family: 'ichiro', Arial, sans-serif; /* Font family of the text */
     margin-top: -17px;
     /* Other styles as needed */
@@ -54,7 +54,7 @@ body {
 
 #aboutme .index-card .name h1 {
     text-align: left;
-    margin-top: 10px;
+    margin-top: 4px;
     position: relative;
     z-index: 3;
 }
@@ -93,8 +93,7 @@ body {
 .card-title {
     position: relative;
     text-align: center; /* Center the text */
-    margin-top: 1px; /* Adjust as needed to position it within the white space */
-    margin-bottom: 20px; /* Provide some space before the first paragraph */
+    margin-top: -17px; /* Adjust as needed to position it within the white space */
     font-size: 70px; /* Adjust as needed */
     font-weight: bold; /* Optional: if you want the title to be bold */
     font-family: 'nib', Arial, sans-serif; /* Add this line */
@@ -140,8 +139,12 @@ body {
     padding-bottom: 20px; /* Adjust the value as needed */
 }
 
+.button-container {
+    padding-top: 100px;
+}
+
 .text-group {
-    margin-top: -50px; /* Adjust the value as needed */
+    margin-top: -75px; /* Adjust the value as needed */
 }
 /* You can also add responsive design */
 @media (max-width: 768px) {
@@ -179,13 +182,49 @@ body {
     height: 0;
     border-style: solid;
     /* Adjust the border width, making the right border larger */
-    border-width: 0 0 30px 20px; /* Left border is now 0 */
+    border-width: 0 0 30px 23px; /* Left border is now 0 */
     border-color: transparent transparent #d4af37 transparent;
     /* Align the top of the triangle with the top of the container */
     top: -10px;
     right: 5px;
     /* Adjust the transform and transform-origin */
-    transform: rotate(-15deg); /* Negative rotation to move it right */
+    transform: rotate(-12deg); /* Negative rotation to move it right */
+    transform-origin: 0 0; /* Rotate around the top left corner */
+}
+
+.music-note::after {
+    content: '';
+    position: absolute;
+    background-color: #d4af37; /* Darker yellow */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    /* Adjust the border width, making the right border larger */
+    border-width: 0 0 38px 29px; /* Left border is now 0 */
+    border-color: transparent transparent #d4af37 transparent;
+    /* Align the top of the triangle with the top of the container */
+    top: -13px;
+    right: 5px;
+    /* Adjust the transform and transform-origin */
+    transform: rotate(-19deg); /* Negative rotation to move it right */
+    transform-origin: 0 0; /* Rotate around the top left corner */
+}
+
+.note-github::after {
+    content: '';
+    position: absolute;
+    background-color: #d4af37; /* Darker yellow */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    /* Adjust the border width, making the right border larger */
+    border-width: 0 0 30px 23px; /* Left border is now 0 */
+    border-color: transparent transparent #d4af37 transparent;
+    /* Align the top of the triangle with the top of the container */
+    top: -10px;
+    right: 5px;
+    /* Adjust the transform and transform-origin */
+    transform: rotate(-12deg); /* Negative rotation to move it right */
     transform-origin: 0 0; /* Rotate around the top left corner */
 }
 
@@ -212,7 +251,8 @@ body {
     justify-content: center; /* Centers flex items horizontally */
     background-color: transparent; /* Change this if you want a different background color */
     position: relative;
-    top: 100px;
+    top: 300px;
+    left: 2.4%;
 }
 
 .project-container img{
