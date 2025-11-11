@@ -380,6 +380,79 @@ p {
     0 .07em 0 #fff;  /* increase a hair if bold ever grazes a rule */
 }
 
+
+
+
+
+
+
+.project-description.index-card,
+.index-card {
+  /* knobs */
+  --fs: 42px;
+  --lh: 1.4;          /* try 1.35–1.5 if you want tighter/looser */
+  --rule: 1px;
+  --offset: .45em;    /* nudges blue rules between baselines */
+  --top-red: .15em;   /* top red rule position */
+
+  font-size: var(--fs);
+  line-height: calc(var(--lh) * 1em);
+
+  /* draw lines in the BACKGROUND so text paints above them */
+  background-image:
+    /* top red rule (thin) */
+    linear-gradient(
+      to bottom,
+      transparent calc(var(--top-red) - 1px),
+      red        calc(var(--top-red) - 1px),
+      red        calc(var(--top-red) + 1px),
+      transparent calc(var(--top-red) + 1px)
+    ),
+    /* blue rules aligned to line-height */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(1em * var(--lh) - var(--rule)),
+      rgba(0,80,200,.28) calc(1em * var(--lh) - var(--rule)),
+      rgba(0,80,200,.28) calc(1em * var(--lh))
+    );
+  background-size: 100% 100%, 100% calc(1em * var(--lh));
+  background-repeat: no-repeat, repeat;
+  background-position: 0 0, 0 var(--offset);
+}
+
+/* kill the overlays that were sitting above text */
+.index-card::before,
+.index-card::after { content: none !important; }
+
+.index-card .text-group p,
+.index-card .text-group-music1 p,
+.project-description .text-group p {
+  font-size: 1em;        /* == 42px from --fs */
+  line-height: inherit;  /* == --lh */
+  margin: 0 0 .6em;
+}
+
+/* remove margin hacks that kick the first line off-grid */
+#aboutme .index-card .text-group p:first-child,
+#aboutme .index-card .text-group p,
+.text-group { margin-top: 0 !important; }
+
+/* optional: small breathing room before the first paragraph */
+.index-card .text-group p:first-child { padding-top: .5em; }
+
+
+
+
+
+
+
+
+
+
+
+
+
 @font-face {
     font-family: 'FrederickatheGreat';
     src: url('styles/font/FrederickatheGreat-Regular.ttf') format('truetype'),
