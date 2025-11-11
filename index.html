@@ -149,21 +149,49 @@
             
             <img src="styles/stock_app.png" alt="Stock App" class="project-image" />
             <div class="project-description index-card">
-                <h2 class="card-title">Stock App</h2>
-                <div class="text-group">
+            <h2 class="card-title">Stock App</h2>
+            <div class="text-group">
                 <p>
-                    This application is meant to act as a one-stop-shop
-                    to help people make informed investment decisions.
+                This project was developedto demonstrate full-stack design principles and external API integration under 
+                rate-limited conditions. It serves as a real-time stock tracker and news aggregator that helps users form 
+                data-driven investment decisions.
                 </p>
                 <p>
-                    It queries Google Finance endpoints to return near real-time statistics and
-                    aggregates Google News/RSS so you can scan headlines that might move a ticker.
+                The application communicates with the RESTful API including <b>Google Finance</b> to retrieve stock metrics, and 
+                aggregates RSS feeds from financial publishers using asynchronous <b>JavaScript</b> calls. Server responses are 
+                cached to reduce load times and API throttling issues.
                 </p>
                 <p>
-                    Built with UX in mind—animated loading states and a calm palette—so the data
-                    feels approachable while you research.
+                Built with <b>Flask</b> and <b>React</b>, it features dynamic chart rendering, 
+                user input validation, and animated loading states for an intuitive user experience. 
+                Special attention was given to <b>UX/UI cohesion</b>, ensuring a visually calm layout that 
+                makes complex financial data accessible to non-technical audiences.
                 </p>
-                </div>
+            </div>
+            </div>
+
+            <img src="styles/article_analysis.png" alt="Article Analysis" class="project-image" />
+            <div class="project-description index-card">
+            <h2 class="card-title">Article Analysis</h2>
+            <div class="text-group">
+                <p>
+                This independent project applies <b>natural language processing</b> and large-scale 
+                data engineering concepts to cluster and retrieve related news articles from the 
+                <b>GDELT</b> global event database. It was created to explore topic modeling, 
+                semantic similarity, and the use of vector search for thematic analysis.
+                </p>
+                <p>
+                Using <b>DuckDB</b> and <b>Parquet</b> for efficient columnar storage, 
+                the pipeline parses millions of GDELT entries containing locations, persons, and themes. 
+                Text embeddings are generated using <b>OpenAI’s CLIP</b> model and stored as sparse 
+                matrices via <b>SciPy</b> for scalable similarity retrieval.
+                </p>
+                <p>
+                The project’s backend supports hybrid search (keyword + vector) with latency-aware 
+                caching. A command-line interface and notebook visualizations were developed for 
+                exploratory data analysis and performance benchmarking.
+                </p>
+            </div>
             </div>
 
 <!-- Linking the JavaScript File -->
