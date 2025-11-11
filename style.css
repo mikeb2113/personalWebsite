@@ -68,32 +68,10 @@ body {
     margin-top: 73px; /* Increased margin for the first paragraph */
 }
 
-#aboutme .index-card .text-group p {
-    text-align: left;
-    margin-top: -13px;
-    position: relative;
-    z-index: 3;
-}
-.index-card::after {
-    content: ''; /* Required for pseudo-elements */
-    position: absolute; /* Position absolutely within the index-card */
-    top: 60px; /* Positioning it just below the red line */
-    left: 0;
-    right: 0;
-    height: 2px; /* Thickness of the red line */
-    background-color: red; /* Color of the red line */
-    z-index: 1;
-}
-
-.index-card::before {
-    content: ''; /* Required for pseudo-elements */
-    position: absolute; /* Position absolutely within the index-card */
-    left: 0;
-    right: 0;
-    height: 40px; /* Height enough to cover the first two blue lines */
-    background-color: white; /* Color of the box */
-    z-index: 2; /* Ensuring it's above the background but below the text content */
-}
+#aboutme .index-card .text-group p { margin-top: 0 !important; }
+.index-card .text-group { margin-top: 0 !important; }
+.index-card::before,
+.index-card::after { content: none !important; }
 
 .card-title {
     position: relative;
