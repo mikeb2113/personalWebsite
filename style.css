@@ -1,5 +1,3 @@
-
-
 body {
     background-image: url('styles/paperBackground.jpg');
     background-size: cover;
@@ -11,58 +9,37 @@ body {
 }
 
 .index-card {
-  /* Typography grid controls (edit these 3 if needed) */
-  --fs: 42px;          /* base text size on the card */
-  --lh: 1.35;          /* unitless line-height (>=1.2 recommended) */
-  --rule: 1px;         /* blue rule thickness */
-  --margin-col: 60px;  /* red margin line x-position */
-
-  font-size: var(--fs);
-  line-height: calc(var(--lh) * 1em);
-
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-  padding: 20px 20px 20px calc(var(--margin-col) + 20px);
-  margin: 20px 0;
-  position: relative;
-
-  /* Lines live in the BACKGROUND so text paints above them */
-  background-image:
-    /* vertical red margin line */
-    linear-gradient(to right, rgba(220,0,0,.6) var(--margin-col), transparent 0),
-    /* horizontal blue rules tied to line-height */
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent calc(1em * var(--lh) - var(--rule)),
-      rgba(0,80,200,.25) calc(1em * var(--lh) - var(--rule)),
-      rgba(0,80,200,.25) calc(1em * var(--lh))
-    );
-  background-size:
-    100% 100%,
-    100% calc(1em * var(--lh));
-  background-repeat:
-    no-repeat,
-    repeat;
-  /* slight nudge so the rule sits between baselines; tweak if needed */
-  background-position:
-    0 0,
-    0 .3em;
+    background-color: white; /* Typical index card color */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 20px; /* Space inside the card */
+    margin: 20px 0; /* Space outside the card */
+    border-radius: 5px; /* Optionally round the corners */
+    position: relative; /* Needed for positioning pseudo-elements */
+    background-image: linear-gradient(to bottom, transparent 58px, red 58px, red 60px, transparent 60px), 
+                      repeating-linear-gradient(to bottom, transparent, transparent 28px, blue 28px, blue 29px);    /* Other styling as needed */
 }
 .notification-image{
     width: .01%;
     height: auto;
 }
-.index-card .text-group p,
-.index-card .text-group-music1 p,
-.project-description .text-group p {
-  font-size: 1em;        /* = var(--fs) */
-  line-height: inherit;  /* = var(--lh) grid */
-  margin: 0 0 .55em;
+.index-card .text-group p {
+    font-size: 42px; /* Adjusted to a more reasonable size */
+    line-height: 29px; /* Line height to match the blue line intervals */
+    color: #333; /* Color of the text */
+    margin-bottom: 40px;
+    font-family: 'ichiro', Arial, sans-serif; /* Font family of the text */
+    /* Other styles as needed */
 }
 
-
+.index-card .text-group-music1 p {
+    font-size: 42px; /* Adjusted to a more reasonable size */
+    line-height: 29px; /* Line height to match the blue line intervals */
+    color: #333; /* Color of the text */
+    margin-bottom: 50px;
+    font-family: 'ichiro', Arial, sans-serif; /* Font family of the text */
+    margin-top: -17px;
+    /* Other styles as needed */
+}
 
 /*.index-card .text-group-music2 p {
     font-size: 42px; 
@@ -84,10 +61,32 @@ body {
     margin-top: 73px; /* Increased margin for the first paragraph */
 }
 
-#aboutme .index-card .text-group p { margin-top: 0 !important; }
-.index-card .text-group { margin-top: 0 !important; }
-.index-card::before,
-.index-card::after { content: none !important; }
+#aboutme .index-card .text-group p {
+    text-align: left;
+    margin-top: -13px;
+    position: relative;
+    z-index: 3;
+}
+.index-card::after {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute; /* Position absolutely within the index-card */
+    top: 60px; /* Positioning it just below the red line */
+    left: 0;
+    right: 0;
+    height: 2px; /* Thickness of the red line */
+    background-color: red; /* Color of the red line */
+    z-index: 1;
+}
+
+.index-card::before {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute; /* Position absolutely within the index-card */
+    left: 0;
+    right: 0;
+    height: 40px; /* Height enough to cover the first two blue lines */
+    background-color: white; /* Color of the box */
+    z-index: 2; /* Ensuring it's above the background but below the text content */
+}
 
 .card-title {
     position: relative;
@@ -117,7 +116,13 @@ body {
     margin: 0 auto 20px; /* Center align and add margin below the image */
 }
 
-
+.project-description {
+    padding-top: 20px; /* Reduce this value to move text up */
+    padding-right: 20px; /* Maintain existing padding, adjust as necessary */
+    padding-bottom: 20px; /* Maintain existing padding, adjust as necessary */
+    padding-left: 20px; /* Maintain existing padding, adjust as necessary */
+    /* Other styles as needed */
+}
 
 .project-description .text-group p {
     font-size: 42px; /* Adjusted to a more reasonable size */
@@ -302,61 +307,9 @@ p {
     top: 150px;
 }
 
-.index-card {
-  --fs: 42px;
-  --lh: 1.35;
-  --rule: 1px;
-  --margin-col: 60px;   /* where the red line lives */
-  --margin-w: 2px;      /* red line thickness */
-  --rule-offset: .35em; /* small nudge so rules sit between baselines */
 
-  font-size: var(--fs);
-  line-height: calc(var(--lh) * 1em);
 
-  background-color: #fff;  /* ensure the card is actually white behind the lines */
-  padding: 20px 20px 20px calc(var(--margin-col) + 20px);
-  position: relative;
 
-  background-image:
-    /* red margin: transparent → red 2px → transparent */
-    linear-gradient(
-      to right,
-      transparent calc(var(--margin-col) - var(--margin-w)/2),
-      rgba(220,0,0,.6) calc(var(--margin-col) - var(--margin-w)/2),
-      rgba(220,0,0,.6) calc(var(--margin-col) + var(--margin-w)/2),
-      transparent calc(var(--margin-col) + var(--margin-w)/2)
-    ),
-    /* blue rules aligned to line-height */
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent calc(1em * var(--lh) - var(--rule)),
-      rgba(0,80,200,.25) calc(1em * var(--lh) - var(--rule)),
-      rgba(0,80,200,.25) calc(1em * var(--lh))
-    );
-  background-size:
-    100% 100%,
-    100% calc(1em * var(--lh));
-  background-repeat: no-repeat, repeat;
-  background-position: 0 0, 0 var(--rule-offset);
-}
-
-/* 2) Keep paragraphs on the same grid; no fixed 29px line-height anywhere */
-.index-card .text-group p,
-.index-card .text-group-music1 p,
-.project-description .text-group p {
-  font-family: 'ichiro', Arial, sans-serif;
-  font-size: 1em;        /* = 42px from the card */
-  line-height: inherit;  /* = 1.35em grid */
-  margin: 0 0 .55em;
-}
-
-/* 3) Remove the old offsets that kick the first lines off the grid */
-.text-group { margin-top: 0 !important; }
-#aboutme .index-card .text-group p:first-child { margin-top: 0 !important; }
-
-/* 4) (Optional) tiny top pad so the first line doesn’t hug the top rule */
-.index-card .text-group p:first-child { padding-top: .5em; }
 @font-face {
     font-family: 'FrederickatheGreat';
     src: url('styles/font/FrederickatheGreat-Regular.ttf') format('truetype'),
