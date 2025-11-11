@@ -293,6 +293,16 @@ p {
   font-synthesis-style: none;
 }
 
+.index-card .text-group p:first-child,
+.project-description .text-group p:first-child {
+  padding-top: .55em;
+}
+
+/* 5) Kill any old nudges/overlays that break the grid */
+#aboutme .index-card .text-group p { margin-top: 0 !important; }
+.index-card .text-group { margin-top: 0 !important; }
+.index-card::before,
+.index-card::after { content: none !important; }
 
 @font-face {
     font-family: 'FrederickatheGreat';
