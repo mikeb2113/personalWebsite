@@ -50,23 +50,56 @@ body {
     padding-top: 6px;
 }*/
 
-#aboutme .index-card .name h1 {
-    text-align: left;
-    margin-top: 4px;
-    position: relative;
-    z-index: 3;
+#aboutme .index-card {
+  /* local grid knobs for this card only */
+  --fs: 40px;          /* pick 38–42px as you like */
+  --lh: 1.42;          /* space between lines (1.35–1.5 safe) */
+  --rule: 1px;
+  --offset: .48em;     /* nudge so rules sit between baselines */
+
+  font-size: var(--fs);
+  line-height: calc(var(--lh) * 1em);
+
+  /* draw rules in the background so text always paints above them */
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(1em * var(--lh) - var(--rule)),
+      rgba(0,80,200,.28) calc(1em * var(--lh) - var(--rule)),
+      rgba(0,80,200,.28) calc(1em * var(--lh))
+    );
+  background-size: 100% calc(1em * var(--lh));
+  background-repeat: repeat;
+  background-position: 0 var(--offset);
 }
 
-#aboutme .index-card .text-group p:first-child {
-    margin-top: 73px; /* Increased margin for the first paragraph */
-}
-
+/* paragraphs: inherit the grid, kill the old nudges */
 #aboutme .index-card .text-group p {
-    text-align: left;
-    margin-top: -13px;
-    position: relative;
-    z-index: 3;
+  font-size: 1em;          /* = var(--fs) from the card */
+  line-height: inherit;    /* = var(--lh) */
+  margin: 0 0 .6em;        /* reset the -13px/+73px hacks */
+  text-align: left;
+  position: static;        /* no z-index stacking needed */
 }
+
+/* the first paragraph: add gentle pad instead of big margin */
+#aboutme .index-card .text-group p:first-child {
+  padding-top: .55em;
+}
+
+/* the title can stay left; no stacking tricks needed */
+#aboutme .index-card .name h1 {
+  margin: 0 0 .4em;
+  position: static;
+}
+
+/* if you still have overlays for lines elsewhere, keep them off here */
+#aboutme .index-card::before,
+#aboutme .index-card::after { content: none !important; }
+
+/* optional: if your global p rule sets font-size:50px/margins, neutralize it here */
+#aboutme .index-card p { font-size: 1em; margin-top: 0; }
 .index-card::after {
     content: ''; /* Required for pseudo-elements */
     position: absolute; /* Position absolutely within the index-card */
