@@ -293,12 +293,6 @@ p {
   font-synthesis-style: none;
 }
 
-/* 5) Kill any old nudges/overlays that break the grid */
-#aboutme .index-card .text-group p { margin-top: 0 !important; }
-.index-card .text-group { margin-top: 0 !important; }
-.index-card::before,
-.index-card::after { content: none !important; }
-
 @font-face {
     font-family: 'FrederickatheGreat';
     src: url('styles/font/FrederickatheGreat-Regular.ttf') format('truetype'),
