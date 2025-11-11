@@ -11,37 +11,42 @@ body {
 }
 
 .index-card {
-    background-color: white; /* Typical index card color */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    padding: 20px; /* Space inside the card */
-    margin: 20px 0; /* Space outside the card */
-    border-radius: 5px; /* Optionally round the corners */
-    position: relative; /* Needed for positioning pseudo-elements */
-    background-image: linear-gradient(to bottom, transparent 58px, red 58px, red 60px, transparent 60px), 
-                      repeating-linear-gradient(to bottom, transparent, transparent 28px, blue 28px, blue 29px);    /* Other styling as needed */
+  /* grid knobs: tweak if needed */
+  --fs: 42px;          /* your big handwriting size */
+  --lh: 1.4;           /* line-height multiplier (try 1.35–1.5) */
+  --rule: 1px;         /* blue rule thickness */
+  --rule-offset: .45em;/* vertical nudge so rules sit between baselines */
+
+  font-size: var(--fs);
+  line-height: calc(var(--lh) * 1em);
+
+  /* keep lines in the background so text paints above them */
+  background-image:
+    linear-gradient(to right, rgba(220,0,0,.6) 60px, transparent 0),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(1em * var(--lh) - var(--rule)),
+      rgba(0,80,200,.25) calc(1em * var(--lh) - var(--rule)),
+      rgba(0,80,200,.25) calc(1em * var(--lh))
+    );
+  background-size: 100% 100%, 100% calc(1em * var(--lh));
+  background-repeat: no-repeat, repeat;
+  background-position: 0 0, 0 var(--rule-offset);
 }
 .notification-image{
     width: .01%;
     height: auto;
 }
-.index-card .text-group p {
-    font-size: 42px; /* Adjusted to a more reasonable size */
-    line-height: 29px; /* Line height to match the blue line intervals */
-    color: #333; /* Color of the text */
-    margin-bottom: 40px;
-    font-family: 'ichiro', Arial, sans-serif; /* Font family of the text */
-    /* Other styles as needed */
+.index-card .text-group p,
+.index-card .text-group-music1 p,
+.project-description .text-group p {
+  font-size: 1em;        /* = var(--fs) */
+  line-height: inherit;  /* = var(--lh) grid */
+  margin: 0 0 .55em;
 }
 
-.index-card .text-group-music1 p {
-    font-size: 42px; /* Adjusted to a more reasonable size */
-    line-height: 29px; /* Line height to match the blue line intervals */
-    color: #333; /* Color of the text */
-    margin-bottom: 50px;
-    font-family: 'ichiro', Arial, sans-serif; /* Font family of the text */
-    margin-top: -17px;
-    /* Other styles as needed */
-}
+
 
 /*.index-card .text-group-music2 p {
     font-size: 42px; 
@@ -118,13 +123,7 @@ body {
     margin: 0 auto 20px; /* Center align and add margin below the image */
 }
 
-.project-description {
-    padding-top: 20px; /* Reduce this value to move text up */
-    padding-right: 20px; /* Maintain existing padding, adjust as necessary */
-    padding-bottom: 20px; /* Maintain existing padding, adjust as necessary */
-    padding-left: 20px; /* Maintain existing padding, adjust as necessary */
-    /* Other styles as needed */
-}
+
 
 .project-description .text-group p {
     font-size: 42px; /* Adjusted to a more reasonable size */
