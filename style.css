@@ -52,7 +52,7 @@ body {
 
 #aboutme .index-card .name h1 {
     text-align: left;
-    margin-top: 1px;
+    margin-top: -2px;
     position: relative;
     z-index: 3;
 }
