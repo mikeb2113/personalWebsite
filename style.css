@@ -9,15 +9,34 @@ body {
 }
 
 .index-card {
-    background-color: white; /* Typical index card color */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    padding: 20px; /* Space inside the card */
-    margin: 20px 0; /* Space outside the card */
-    border-radius: 5px; /* Optionally round the corners */
-    position: relative; /* Needed for positioning pseudo-elements */
-    background-image: linear-gradient(to bottom, transparent 58px, red 58px, red 60px, transparent 60px), 
-                      repeating-linear-gradient(to bottom, transparent, transparent 28px, blue 28px, blue 29px);    /* Other styling as needed */
+  /* Layout & look */
+  max-width: 40ch;
+  padding: 1.25rem 1rem 1rem 2.5rem; /* left padding for margin line */
+  border-radius: 8px;
+  background-color: #fff;
+  color: #222;
+
+  /* Typography */
+  font: 16px/1.6 system-ui, sans-serif; /* line-height = 1.6 */
+  
+  /* Ruled paper: 1px line at the end of each line box */
+  background-image:
+    /* vertical red margin line */
+    linear-gradient(to right, rgba(220,0,0,.5) 48px, transparent 0),
+    /* horizontal blue rules */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(1.6em - 1px),
+      rgba(0,80,200,.25) calc(1.6em - 1px),
+      rgba(0,80,200,.25) 1.6em
+    );
+  background-size: 100% 100%, 100% 1.6em;   /* 1.6em matches line-height */
+  background-position: 0 0, 0 .6em;         /* nudge so rules sit between baselines */
+  background-repeat: no-repeat, repeat-y;
 }
+.index-card h3 { margin: 0 0 .4em; }
+.index-card p  { margin: 0; }
 .notification-image{
     width: .01%;
     height: auto;
