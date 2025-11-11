@@ -302,6 +302,61 @@ p {
     top: 150px;
 }
 
+.index-card {
+  --fs: 42px;
+  --lh: 1.35;
+  --rule: 1px;
+  --margin-col: 60px;   /* where the red line lives */
+  --margin-w: 2px;      /* red line thickness */
+  --rule-offset: .35em; /* small nudge so rules sit between baselines */
+
+  font-size: var(--fs);
+  line-height: calc(var(--lh) * 1em);
+
+  background-color: #fff;  /* ensure the card is actually white behind the lines */
+  padding: 20px 20px 20px calc(var(--margin-col) + 20px);
+  position: relative;
+
+  background-image:
+    /* red margin: transparent → red 2px → transparent */
+    linear-gradient(
+      to right,
+      transparent calc(var(--margin-col) - var(--margin-w)/2),
+      rgba(220,0,0,.6) calc(var(--margin-col) - var(--margin-w)/2),
+      rgba(220,0,0,.6) calc(var(--margin-col) + var(--margin-w)/2),
+      transparent calc(var(--margin-col) + var(--margin-w)/2)
+    ),
+    /* blue rules aligned to line-height */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(1em * var(--lh) - var(--rule)),
+      rgba(0,80,200,.25) calc(1em * var(--lh) - var(--rule)),
+      rgba(0,80,200,.25) calc(1em * var(--lh))
+    );
+  background-size:
+    100% 100%,
+    100% calc(1em * var(--lh));
+  background-repeat: no-repeat, repeat;
+  background-position: 0 0, 0 var(--rule-offset);
+}
+
+/* 2) Keep paragraphs on the same grid; no fixed 29px line-height anywhere */
+.index-card .text-group p,
+.index-card .text-group-music1 p,
+.project-description .text-group p {
+  font-family: 'ichiro', Arial, sans-serif;
+  font-size: 1em;        /* = 42px from the card */
+  line-height: inherit;  /* = 1.35em grid */
+  margin: 0 0 .55em;
+}
+
+/* 3) Remove the old offsets that kick the first lines off the grid */
+.text-group { margin-top: 0 !important; }
+#aboutme .index-card .text-group p:first-child { margin-top: 0 !important; }
+
+/* 4) (Optional) tiny top pad so the first line doesn’t hug the top rule */
+.index-card .text-group p:first-child { padding-top: .5em; }
 @font-face {
     font-family: 'FrederickatheGreat';
     src: url('styles/font/FrederickatheGreat-Regular.ttf') format('truetype'),
