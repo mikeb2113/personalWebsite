@@ -286,13 +286,6 @@ p {
     top: 150px;
 }
 
-.index-card b,
-.index-card strong {
-  line-height: calc(1em * var(--lh) + 0.1em);
-  font-synthesis-weight: none; /* avoid browser faux-bold metric bloat */
-  font-synthesis-style: none;
-}
-
 @font-face {
     font-family: 'FrederickatheGreat';
     src: url('styles/font/FrederickatheGreat-Regular.ttf') format('truetype'),
