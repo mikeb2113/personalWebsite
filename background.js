@@ -1,218 +1,154 @@
+/***** CONFIG *****/
+// 1) Set this to your R2 public bucket URL (no trailing slash).
+// Example: const BASE_URL = 'https://pub-abcdef1234567890.r2.dev';
+const BASE_URL = 'https://pub-8ce35b80e4b0434b97d156702a7cd77b.r2.dev';
+
+// Folder names in your bucket
+const MUSIC_DIR  = 'music';
+const SOUNDS_DIR = 'sounds';
+
+// Files inside those folders (note the spaces; we’ll URL-encode them)
+const musicNameTemplate = 'City Folk %hour%%ampm%.mp3';
+const randomEventFile1  = 'Cicada sounds.mp3';
+const randomEventFile2  = 'Mole Cricket.mp3';
+const sfxCatchingBug    = 'Catching bug.mp3';
+const sfxClapping       = 'Clapping.mp3';
+const sfxRain           = 'Rain.mp3';
+
+/***** STATE *****/
 let CicadaCaught = 0;
 let MoleCricketsCaught = 0;
 
-// Replace these with your actual file paths
-const musicFilePath = 'City Folk/City Folk %hour%%ampm%.mp3';
-const randomEventFilePath1 = 'misc/Cicada sounds.mp3';
-const randomEventFilePath2 = 'misc/Mole Cricket.mp3';
-const catchingBug = 'misc/Catching bug.mp3';
-const clapping = 'misc/Clapping.mp3';
-const rain = 'misc/Rain.mp3';
-let lastPlayedHour = null; // Variable to store the last hour when music was played
+let lastPlayedHour = null;
 let isMusicPlaying = false;
 let currentAudio = null;
-let fadeOutDuration = 5; // Duration of the fade out in seconds
-let intervalId;
-let musicInterval; // Global variable to store the music interval ID
-let randomEventInterval; // Global variable to store the music interval ID
-let rainEventInterval;
+let musicInterval = null;
+let randomEventInterval = null;
+let rainEventInterval = null;
 
-/*
-    private final String musicFilePath = "Animal crossing time music player/City Folk/City Folk %d%s.mp3";
-    private final String randomEventFilePath1 = "Animal crossing time music player/misc/Cicada sounds.mp3";
-    private final String randomEventFilePath2 = "Animal crossing time music player/misc/Mole Cricket.mp3";
-    private final String catchingBug = "Animal crossing time music player/misc/Catching bug.mp3";
-    private final String clapping = "Animal crossing time music player/misc/Clapping.mp3";
-    private final String rain = "Animal crossing time music player/misc/Rain.mp3";
-    */
-   //City Folk/City Folk 12am.mp3
+/***** HELPERS *****/
+// Build a safe URL: encodes each path segment (handles spaces)
+function cdnUrl(...segments) {
+  const safe = segments.map(s => encodeURIComponent(s));
+  return `${BASE_URL}/${safe.join('/')}`;
+}
 
-   function stopMusicAndEvents() {
-    console.log("stopMusicAndEvents called");
-    if (isMusicPlaying) {
-        console.log("detected that music is playing");
-        clearInterval(musicInterval); // Clear the music interval
-        clearInterval(randomEventInterval); // Clear the random event interval
-        clearInterval(rainEventInterval); // Clear the rain event interval
-        isMusicPlaying = false;
+// Compute hourly track URL based on current time
+function currentHourMusicUrl() {
+  const h = getHour(); // 0..23
+  const hour12 = h > 12 ? h - 12 : (h === 0 ? 12 : h);
+  const ampm = h < 12 ? 'am' : 'pm';
+  const fileName = musicNameTemplate.replace('%hour%', hour12).replace('%ampm%', ampm);
+  return cdnUrl(MUSIC_DIR, fileName);
+}
 
-        // Stop the currently playing audio
-        if (currentAudio && !currentAudio.paused) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-        }
-    }
+/***** CONTROL *****/
+function stopMusicAndEvents() {
+  if (!isMusicPlaying) return;
+  clearInterval(musicInterval);
+  clearInterval(randomEventInterval);
+  clearInterval(rainEventInterval);
+  musicInterval = randomEventInterval = rainEventInterval = null;
+  isMusicPlaying = false;
+
+  if (currentAudio && !currentAudio.paused) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
 }
 
 function playMusicAndEvents() {
-    console.log("playMusicAndEvents called");
-    if (!isMusicPlaying) {
-        console.log("detected that music is not playing");
-        isMusicPlaying = true;
-        // Music playback logic
-        setInterval(function() {
-            let currentHour = getHour(); // Get the current hour
+  if (isMusicPlaying) return;
+  isMusicPlaying = true;
 
-            // Check if the current hour is different from the last played hour
-            if (lastPlayedHour !== currentHour) {
-                let hour12 = currentHour > 12 ? currentHour - 12 : (currentHour === 0 ? 12 : currentHour);
-                let ampm = currentHour < 12 ? 'am' : 'pm';
-                let path = musicFilePath.replace('%hour%', hour12).replace('%ampm%', ampm);
-                console.log("path: " + path);
-                playAudio(path); // Play the audio for the current hour
+  // Start immediately
+  lastPlayedHour = null;
+  playAudio(currentHourMusicUrl());
 
-                lastPlayedHour = currentHour; // Update the last played hour
-            }
-        }, 600);
-
-        // Implementing task2: Random events logic
-        setInterval(function() {
-            let eventCalculator = Math.floor(Math.random() * 100);
-            if (eventCalculator >= 50) { // Increased chance for this event
-                // Logic for one type of event
-                handleEvent(randomEventFilePath1);
-            } else if (eventCalculator >= 40 && eventCalculator < 50) { // Increased chance for another event
-                // Logic for another type of event
-                handleEvent(randomEventFilePath2);
-            }
-        }, 60000);
-
-        // Implementing task3: Rain event logic
-        setInterval(function() {
-            let random = Math.floor(Math.random() * 100);
-            if (random >= 80) { 
-                handleRainEvent(rain);
-            }
-        }, 60000);
+  // Re-check hour once per minute (not every 600ms)
+  musicInterval = setInterval(() => {
+    const nowHour = getHour();
+    if (lastPlayedHour !== nowHour) {
+      lastPlayedHour = nowHour;
+      playAudio(currentHourMusicUrl());
     }
+  }, 60_000);
+
+  // Random one-shot events (cicada / mole cricket)
+  randomEventInterval = setInterval(() => {
+    triggerRandomEvent();
+  }, 60_000);
+
+  // Occasional looping rain (adjust chance as desired)
+  rainEventInterval = setInterval(() => {
+    const roll = Math.floor(Math.random() * 100);
+    if (roll >= 80) handleRainEvent(cdnUrl(SOUNDS_DIR, sfxRain));
+  }, 60_000);
 }
 
+/***** EVENTS *****/
 function triggerRandomEvent() {
-    let eventCalculator = Math.floor(Math.random() * 100); // Range from 0 to 99
-
-    // Cicada sounds with a 5% chance
-    if (eventCalculator < 2) { // 0 to 4 represents 5% of the range 0-99
-        handleEvent(randomEventFilePath1, () => {
-            CicadaCaught++;
-            playAudio(catchingBug);
-            playAudio(clapping);
-        });
-    } 
-    // Rain with a 13% chance, ensuring no overlap with the cicada event
-    else if (eventCalculator >= 5 && eventCalculator < 7) { // 5 to 17 represents 13% of the range
-        handleEvent(randomEventFilePath2, () => {
-            MoleCricketsCaught++;
-            playAudio(catchingBug);
-            playAudio(clapping);
-        });
-    }
-}
-
-
-
-
-function handleEvent(filePath, callback) {
-    let durationSeconds = Math.floor(Math.random() * 120) + 60; // 60-179 seconds
-    let durationMillis = durationSeconds * 1000;
-
-    playEventSound(filePath); // Use playEventSound to handle event sounds
-
-    setTimeout(() => {
-        if (typeof callback === 'function') {
-            callback();
-        }
-    }, durationMillis);
-}
-
-function playEventSound(filePath) {
-    let eventAudio = new Audio(filePath);
-    eventAudio.play().then(() => {
-        console.log("Event sound started successfully:", filePath);
-    }).catch((error) => {
-        console.error("Error during event sound playback for:", filePath, error);
+  const r = Math.floor(Math.random() * 100);
+  if (r < 5) { // ~5%
+    handleEvent(cdnUrl(SOUNDS_DIR, randomEventFile1), () => {
+      CicadaCaught++;
+      playAudio(cdnUrl(SOUNDS_DIR, sfxCatchingBug));
+      playAudio(cdnUrl(SOUNDS_DIR, sfxClapping));
     });
+  } else if (r < 18) { // ~13%
+    handleEvent(cdnUrl(SOUNDS_DIR, randomEventFile2), () => {
+      MoleCricketsCaught++;
+      playAudio(cdnUrl(SOUNDS_DIR, sfxCatchingBug));
+      playAudio(cdnUrl(SOUNDS_DIR, sfxClapping));
+    });
+  }
 }
 
+function handleEvent(fileUrl, callback) {
+  const durationMs = (Math.floor(Math.random() * 120) + 60) * 1000; // 60–179s
+  playEventSound(fileUrl);
+  setTimeout(() => { if (typeof callback === 'function') callback(); }, durationMs);
+}
 
+function playEventSound(fileUrl) {
+  const a = new Audio(fileUrl);
+  a.play().catch(err => console.error('Event playback error:', fileUrl, err));
+}
 
-function handleRainEvent(filePath) {
-    let rainAudio = new Audio(filePath);
-    rainAudio.loop = true; // If you want the rain sound to loop
-    rainAudio.play().then(() => {
-        console.log("Rain sound started successfully:", filePath);
-    }).catch((error) => {
-        console.error("Error during rain sound playback for:", filePath, error);
+function handleRainEvent(fileUrl) {
+  const a = new Audio(fileUrl);
+  a.loop = true;
+  a.play().catch(err => console.error('Rain playback error:', fileUrl, err));
+  // If you need to stop rain later, store `a` globally.
+}
+
+/***** CORE AUDIO *****/
+function playAudio(fileUrl) {
+  if (currentAudio && !currentAudio.paused) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+
+  currentAudio = new Audio(fileUrl);
+  currentAudio.loop = false;
+
+  currentAudio.play()
+    .then(() => {
+      console.log('Playing:', fileUrl);
+      lastPlayedHour = getHour();
+    })
+    .catch(err => {
+      console.error('Playback error:', fileUrl, err);
+      // Most browsers require a user gesture first. Bind playMusicAndEvents to a button click.
     });
 
-    // You can store rainAudio in a global variable if you need to stop it later
+  currentAudio.addEventListener('ended', () => {
+    // When the track ends, re-evaluate the hour and play the correct next track
+    playAudio(currentHourMusicUrl());
+  });
 }
 
-function playAudio(filePath) {
-    // Stop the currently playing audio
-    if (currentAudio && !currentAudio.paused) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0; // Reset the audio to the start
-    }
-
-    // Start the new audio track
-    currentAudio = new Audio(filePath);
-    currentAudio.loop = false; // Disable auto looping
-
-    currentAudio.play().then(() => {
-        console.log("Playback started successfully for:", filePath);
-    }).catch((error) => {
-        console.error("Error during playback for:", filePath, error);
-    });
-
-    // Event listener for when the audio ends
-    currentAudio.addEventListener('ended', function() {
-        console.log("Audio track ended.");
-
-        let currentHour = getHour(); // Get the current hour again
-        let hour12 = currentHour > 12 ? currentHour - 12 : (currentHour === 0 ? 12 : currentHour);
-        let ampm = currentHour < 12 ? 'am' : 'pm';
-        let newPath = musicFilePath.replace('%hour%', hour12).replace('%ampm%', ampm);
-
-        if (newPath !== filePath) {
-            console.log("Hour changed. Playing track for the new hour.");
-            playAudio(newPath); // Play the audio for the new hour if it has changed
-        } else {
-            console.log("Replaying track for the same hour.");
-            playAudio(filePath); // Replay the same track if the hour hasn't changed
-        }
-    });
-}
-
-function playNextTrack() {
-    let currentHour = getHour(); // Assuming getHour() returns the current hour
-    let nextHour = (currentHour + 1) % 24; // Calculate the next hour, wrap around at 24
-    let hour12 = nextHour > 12 ? nextHour - 12 : (nextHour === 0 ? 12 : nextHour);
-    let ampm = nextHour < 12 ? 'am' : 'pm';
-    let path = musicFilePath.replace('%hour%', hour12).replace('%ampm%', ampm);
-    
-    playAudio(path); // Play the audio for the next hour
-}
-
-function fadeOutAudio(audio, duration) {
-    let originalVolume = audio.volume;
-    // Adjust the step calculation for a more gradual decrease
-    // Increasing the divisor will decrease the step size
-    let step = originalVolume / (duration * 1000 / 50); // Decrease step size for more subtlety
-
-    let fadeOutInterval = setInterval(() => {
-        if (audio.volume > step) {
-            audio.volume -= step;
-        } else {
-            // Stop and reset the audio when the volume is almost zero
-            audio.pause();
-            audio.volume = originalVolume;
-            audio.currentTime = 0;
-            clearInterval(fadeOutInterval);
-        }
-    }, 50); // Increase interval duration for smoother transition
-}
-
+/***** UTILS *****/
 function getHour() {
-    let date = new Date();
-    return date.getHours();
+  return new Date().getHours();
 }
