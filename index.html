@@ -40,14 +40,13 @@
         position: relative;
         display: inline-block;
     }
-    .bold-pseudo::before {
-        content: attr(data-text);
-        position: absolute;
-        left: 1px; /* Adjust these values to achieve the desired bold effect */
-        top: 1px;
-        z-index: -1;
-        color: #000;
+    .bold-pseudo-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;       /* keeps the ::before from leaking into the next card */
     }
+.bold-pseudo { position: relative; z-index: 1; } /* ensure main text sits above */
+.bold-pseudo::before { z-index: 0; }             /* not negative */
     .note {
         font-size: inherit; /* Ensure the font size of the .note class inherits from the body */
     }
@@ -147,6 +146,7 @@
                 </p>
             </div>
             </div>
+            
             <img src="styles/stock_app.png" alt="Stock App" class="project-image" />
             <div class="project-description index-card">
                 <h2 class="card-title">Stock App</h2>
