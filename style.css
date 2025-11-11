@@ -11,18 +11,27 @@ body {
 }
 
 .index-card {
-  /* grid knobs: tweak if needed */
-  --fs: 42px;          /* your big handwriting size */
-  --lh: 1.4;           /* line-height multiplier (try 1.35–1.5) */
+  /* Typography grid controls (edit these 3 if needed) */
+  --fs: 42px;          /* base text size on the card */
+  --lh: 1.35;          /* unitless line-height (>=1.2 recommended) */
   --rule: 1px;         /* blue rule thickness */
-  --rule-offset: .45em;/* vertical nudge so rules sit between baselines */
+  --margin-col: 60px;  /* red margin line x-position */
 
   font-size: var(--fs);
   line-height: calc(var(--lh) * 1em);
 
-  /* keep lines in the background so text paints above them */
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  padding: 20px 20px 20px calc(var(--margin-col) + 20px);
+  margin: 20px 0;
+  position: relative;
+
+  /* Lines live in the BACKGROUND so text paints above them */
   background-image:
-    linear-gradient(to right, rgba(220,0,0,.6) 60px, transparent 0),
+    /* vertical red margin line */
+    linear-gradient(to right, rgba(220,0,0,.6) var(--margin-col), transparent 0),
+    /* horizontal blue rules tied to line-height */
     repeating-linear-gradient(
       to bottom,
       transparent 0,
@@ -30,9 +39,16 @@ body {
       rgba(0,80,200,.25) calc(1em * var(--lh) - var(--rule)),
       rgba(0,80,200,.25) calc(1em * var(--lh))
     );
-  background-size: 100% 100%, 100% calc(1em * var(--lh));
-  background-repeat: no-repeat, repeat;
-  background-position: 0 0, 0 var(--rule-offset);
+  background-size:
+    100% 100%,
+    100% calc(1em * var(--lh));
+  background-repeat:
+    no-repeat,
+    repeat;
+  /* slight nudge so the rule sits between baselines; tweak if needed */
+  background-position:
+    0 0,
+    0 .3em;
 }
 .notification-image{
     width: .01%;
